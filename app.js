@@ -31,8 +31,12 @@ app.post('/',(req,res)=>{
     const url = "https://us21.api.mailchimp.com/3.0/lists/37b783960c"
     const options={
         method:'POST',
-        auth : fs.readFile('/authorisation.txt'),
-    }
+        headers: {
+            'Content-Type': 'application/json'
+          },
+          auth: fs.readFileSync('authorisation.txt', 'utf8').trim()
+        };
+    
     const request=https.request(url,options,function(response){
     if(response.statusCode===200){
         res.sendFile(__dirname+"/success.html");
