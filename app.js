@@ -31,10 +31,7 @@ app.post('/',(req,res)=>{
     const url = "https://us21.api.mailchimp.com/3.0/lists/37b783960c"
     const options={
         method:'POST',
-        fs.readFile("./authorisation.txt","utf-8",(err,data)=>{
-        if(err) throw err;
-        authToken=`Bearer ${data}`;
-        })
+        key: fs.readFileSync('/authorisation.txt'),
     }
     const request=https.request(url,options,function(response){
     if(response.statusCode===200){
