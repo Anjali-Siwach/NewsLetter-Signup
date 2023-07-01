@@ -31,7 +31,7 @@ app.post('/',(req,res)=>{
     const url = "https://us21.api.mailchimp.com/3.0/lists/37b783960c"
     const options={
         method:'POST',
-        key: fs.readFileSync('/authorisation.txt'),
+        key: fs.readFile('/authorisation.txt'),
     }
     const request=https.request(url,options,function(response){
     if(response.statusCode===200){
