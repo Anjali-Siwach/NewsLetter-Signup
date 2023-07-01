@@ -32,7 +32,7 @@ app.post('/',(req,res)=>{
     const options={
         method:'POST',
         auth: 'anjali1:90bb4b4335772353dbca3c5c6f3afb9f-us21'
-        };
+        }
     
     const request=https.request(url,options,function(response){
     if(response.statusCode===200){
@@ -40,11 +40,7 @@ app.post('/',(req,res)=>{
     }else{
         res.sendFile(__dirname+"/failure.html");
     }
-
-
-
-
-    response.on("data",function(data){
+   response.on("data",function(data){
         console.log(JSON.parse(data));
     })
     })
