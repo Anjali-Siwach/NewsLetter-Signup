@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
 const https =require("https");
+const fs = require("fs");
 const app = express();
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("public"));
@@ -30,7 +31,10 @@ app.post('/',(req,res)=>{
     const url = "https://us21.api.mailchimp.com/3.0/lists/37b783960c"
     const options={
         method:'POST',
-       
+        fs.readFile("./authorisation.txt","utf-8",(err,data)=>{
+        if(err) throw err;
+        authToken=`Bearer ${data}`;
+        })
     }
     const request=https.request(url,options,function(response){
     if(response.statusCode===200){
